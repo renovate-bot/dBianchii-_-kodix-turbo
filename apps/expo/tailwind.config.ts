@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-import baseConfig from "@acme/tailwind-config";
+import baseConfig from "@kdx/tailwind-config";
 
 export default {
   content: ["./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],

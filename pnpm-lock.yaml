@@ -87,13 +87,13 @@ importers:
         specifier: 1.9.1
         version: 1.9.1
     devDependencies:
-      '@acme/api':
+      '@kdx/api':
         specifier: ^0.1.0
         version: link:../../packages/api
-      '@acme/eslint-config':
+      '@kdx/eslint-config':
         specifier: ^0.2.0
         version: link:../../packages/config/eslint
-      '@acme/tailwind-config':
+      '@kdx/tailwind-config':
         specifier: ^0.1.0
         version: link:../../packages/config/tailwind
       '@babel/core':
@@ -135,13 +135,13 @@ importers:
 
   apps/nextjs:
     dependencies:
-      '@acme/api':
+      '@kdx/api':
         specifier: ^0.1.0
         version: link:../../packages/api
-      '@acme/auth':
+      '@kdx/auth':
         specifier: ^0.1.0
         version: link:../../packages/auth
-      '@acme/db':
+      '@kdx/db':
         specifier: ^0.1.0
         version: link:../../packages/db
       '@t3-oss/env-nextjs':
@@ -184,10 +184,10 @@ importers:
         specifier: ^3.21.4
         version: 3.21.4
     devDependencies:
-      '@acme/eslint-config':
+      '@kdx/eslint-config':
         specifier: ^0.2.0
         version: link:../../packages/config/eslint
-      '@acme/tailwind-config':
+      '@kdx/tailwind-config':
         specifier: ^0.1.0
         version: link:../../packages/config/tailwind
       '@types/node':
@@ -220,10 +220,10 @@ importers:
 
   packages/api:
     dependencies:
-      '@acme/auth':
+      '@kdx/auth':
         specifier: ^0.1.0
         version: link:../auth
-      '@acme/db':
+      '@kdx/db':
         specifier: ^0.1.0
         version: link:../db
       '@trpc/client':
@@ -239,7 +239,7 @@ importers:
         specifier: ^3.21.4
         version: 3.21.4
     devDependencies:
-      '@acme/eslint-config':
+      '@kdx/eslint-config':
         specifier: ^0.2.0
         version: link:../config/eslint
       eslint:
@@ -251,7 +251,7 @@ importers:
 
   packages/auth:
     dependencies:
-      '@acme/db':
+      '@kdx/db':
         specifier: ^0.1.0
         version: link:../db
       '@auth/core':
@@ -279,7 +279,7 @@ importers:
         specifier: ^3.21.4
         version: 3.21.4
     devDependencies:
-      '@acme/eslint-config':
+      '@kdx/eslint-config':
         specifier: ^0.2.0
         version: link:../config/eslint
       eslint:
