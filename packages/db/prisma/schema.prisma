@@ -198,6 +198,12 @@ model EventDone {
   @@index([eventInfoId])
 }
 
+model Post {
+  id      String @id @default(cuid())
+  title   String
+  content String
+}
+
 // Necessary for Next auth
 model Account {
   id                String  @id @default(cuid())
