@@ -263,9 +263,6 @@ importers:
       '@kdx/api':
         specifier: ^0.1.0
         version: link:../../packages/api
-      '@kdx/auth':
-        specifier: ^0.1.0
-        version: link:../../packages/auth
       '@kdx/eslint-config':
         specifier: ^0.2.0
         version: link:../../packages/config/eslint

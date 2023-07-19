@@ -28,7 +28,6 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@kdx/auth": "^0.1.0",
     "@kdx/api": "^0.1.0",
     "@kdx/eslint-config": "^0.2.0",
     "@kdx/tailwind-config": "^0.1.0",
