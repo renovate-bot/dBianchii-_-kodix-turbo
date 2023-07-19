@@ -10,9 +10,8 @@ import superjson from "superjson";
 import { api } from "~/utils/api";
 
 const getBaseUrl = () => {
-  if (typeof window !== "undefined") return ""; // browser should use relative url
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // SSR should use vercel url
-
+  if (typeof window !== "undefined") return `http://localhost:3000`; // browser should use localhost:3000
+  if (process.env.VERCEL_URL) return `https://www.kodix.com.br`; // SSR in production should use vercel url
   return `http://localhost:3000`; // dev SSR should use localhost
 };
 

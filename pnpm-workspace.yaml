@@ -1,7 +1,8 @@
 packages:
-  - apps/expo
-  - apps/nextjs
   - apps/kdx
+  - apps/kodix-care
+  - apps/nextjs
+  - apps/expo
   - packages/api
   - packages/auth
   - packages/db
