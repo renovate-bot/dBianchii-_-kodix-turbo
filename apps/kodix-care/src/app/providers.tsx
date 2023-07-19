@@ -10,7 +10,7 @@ import superjson from "superjson";
 import { api } from "~/utils/api";
 
 const getBaseUrl = () => {
-  if (process.env.VERCEL_URL) return `https://www.kodix.com.br`; // SSR in production should use vercel url
+  if (process.env.NODE_ENV === "production") return `https://www.kodix.com.br`; // SSR in production should use vercel url
   if (typeof window !== "undefined") return `http://localhost:3000`; // browser should use localhost:3000
   return `http://localhost:3000`; // dev SSR should use localhost
 };
