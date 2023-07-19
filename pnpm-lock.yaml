@@ -220,9 +220,6 @@ importers:
 
   apps/kodix-care:
     dependencies:
-      '@kdx/auth':
-        specifier: ^0.1.0
-        version: link:../../packages/auth
       '@t3-oss/env-nextjs':
         specifier: ^0.6.0
         version: 0.6.0(typescript@5.1.6)(zod@3.21.4)
@@ -266,6 +263,9 @@ importers:
       '@kdx/api':
         specifier: ^0.1.0
         version: link:../../packages/api
+      '@kdx/auth':
+        specifier: ^0.1.0
+        version: link:../../packages/auth
       '@kdx/eslint-config':
         specifier: ^0.2.0
         version: link:../../packages/config/eslint
