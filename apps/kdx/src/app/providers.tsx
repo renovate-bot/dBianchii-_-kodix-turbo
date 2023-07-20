@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
 import { httpBatchLink, loggerLink } from "@trpc/client";
+import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "next-themes";
 import superjson from "superjson";
 
 import { api } from "~/utils/api";
@@ -53,5 +55,21 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
       </ReactQueryStreamedHydration>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
+  );
+}
+
+export const NextAuthProvider = ({
+  children,
+}: {
+  children?: React.ReactNode;
+}) => {
+  return <SessionProvider>{children}</SessionProvider>;
+};
+
+export function NextThemeProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      {children}
+    </ThemeProvider>
   );
 }

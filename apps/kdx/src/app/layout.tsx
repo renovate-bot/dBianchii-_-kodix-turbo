@@ -3,7 +3,19 @@ import { Inter } from "next/font/google";
 
 import "~/styles/globals.css";
 
-import { TRPCReactProvider } from "./providers";
+import type { AppType } from "next/app";
+
+import { Toaster } from "@kdx/ui";
+
+import Footer from "~/components/Footer/footer";
+import Header from "~/components/Header/Header";
+import { TailwindIndicator } from "~/components/tailwind-indicator";
+import { ThemeSwitcher } from "~/components/theme-switcher";
+import {
+  NextAuthProvider,
+  NextThemeProvider,
+  TRPCReactProvider,
+} from "./providers";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -27,10 +39,32 @@ export const metadata: Metadata = {
 };
 
 export default function Layout(props: { children: React.ReactNode }) {
+  // const routesLayoutNotNeeded = ["/signIn", "/newUser"];
+  // const isLayoutNotNeeded = true;
+
   return (
     <html lang="en">
       <body className={["font-sans", fontSans.variable].join(" ")}>
-        <TRPCReactProvider>{props.children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          <NextAuthProvider>
+            <NextThemeProvider>
+              <Header />
+              {props.children}
+              <Footer />
+              <Toaster />
+            </NextThemeProvider>
+          </NextAuthProvider>
+
+          {/* UI Design Helpers */}
+          {process.env.NODE_ENV !== "production" && (
+            <div className="fixed bottom-1 left-20 z-50 flex flex-row items-center space-x-1">
+              <div className="flex">
+                <ThemeSwitcher />
+              </div>
+              <TailwindIndicator />
+            </div>
+          )}
+        </TRPCReactProvider>
       </body>
     </html>
   );
