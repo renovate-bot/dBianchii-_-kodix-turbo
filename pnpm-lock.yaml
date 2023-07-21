@@ -605,11 +605,8 @@ importers:
         specifier: ^1.0.6
         version: 1.0.6(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
       class-variance-authority:
-        specifier: ^0.4.0
-        version: 0.4.0(typescript@5.1.6)
-      classnames:
-        specifier: ^2.3.2
-        version: 2.3.2
+        specifier: ^0.6.0
+        version: 0.6.0(typescript@5.1.6)
       clsx:
         specifier: ^1.2.1
         version: 1.2.1
@@ -617,36 +614,48 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)
       lucide-react:
-        specifier: ^0.161.0
-        version: 0.161.0(react@18.2.0)
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
+        specifier: ^0.244.0
+        version: 0.244.0(react@18.2.0)
       react-day-picker:
         specifier: ^8.8.0
         version: 8.8.0(date-fns@2.30.0)(react@18.2.0)
-      react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
       react-hook-form:
-        specifier: ^7.45.0
-        version: 7.45.0(react@18.2.0)
+        specifier: ^7.45.2
+        version: 7.45.2(react@18.2.0)
       tailwind-merge:
         specifier: ^1.13.2
         version: 1.13.2
+      tailwindcss-animate:
+        specifier: ^1.0.6
+        version: 1.0.6(tailwindcss@3.3.3)
     devDependencies:
       '@kdx/eslint-config':
         specifier: ^0.2.0
         version: link:../config/eslint
+      '@kdx/tailwind-config':
+        specifier: ^0.1.0
+        version: link:../config/tailwind
       '@types/react':
-        specifier: ^18.2.15
+        specifier: ^18.2.0
         version: 18.2.15
       '@types/react-dom':
-        specifier: ^18.2.7
+        specifier: ^18.2.0
         version: 18.2.7
+      autoprefixer:
+        specifier: ^10.4.14
+        version: 10.4.14(postcss@8.4.26)
       eslint:
         specifier: ^8.45.0
         version: 8.45.0
+      postcss:
+        specifier: ^8.4.24
+        version: 8.4.26
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      tailwindcss:
+        specifier: ^3.3.2
+        version: 3.3.3
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -7603,19 +7612,16 @@ packages:
       static-extend: 0.1.2
     dev: false
 
-  /class-variance-authority@0.4.0(typescript@5.1.6):
-    resolution: {integrity: sha512-74enNN8O9ZNieycac/y8FxqgyzZhZbxmCitAtAeUrLPlxjSd5zA7LfpprmxEcOmQBnaGs5hYhiSGnJ0mqrtBLQ==}
+  /class-variance-authority@0.6.0(typescript@5.1.6):
+    resolution: {integrity: sha512-qdRDgfjx3GRb9fpwpSvn+YaidnT7IUJNe4wt5/SWwM+PmUwJUhQRk/8zAyNro0PmVfmen2635UboTjIBXXxy5A==}
     peerDependencies:
-      typescript: '>= 4.5.5 < 5'
+      typescript: '>= 4.5.5 < 6'
     peerDependenciesMeta:
       typescript:
         optional: true
     dependencies:
+      clsx: 1.2.1
       typescript: 5.1.6
-    dev: false
-
-  /classnames@2.3.2:
-    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: false
 
   /clean-stack@2.2.0:
@@ -10399,7 +10405,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: false
 
   /lowercase-keys@1.0.1:
     resolution: {integrity: sha512-G2Lj61tXDnVFFOi8VZds+SoQjtQC3dgokKdDG2mTm1tx4m50NUHBOZSBwQQHyy0V12A0JTG4icfZQH+xPyh8VA==}
@@ -10429,8 +10434,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lucide-react@0.161.0(react@18.2.0):
-    resolution: {integrity: sha512-Yr0VR0l6r+t65JCE9q+rTMItWqbhF4Wn3l73PHMwxves2wDhEPH7V2JqxvqS0In/brIwiyBV90++r/rHxNK9ug==}
+  /lucide-react@0.244.0(react@18.2.0):
+    resolution: {integrity: sha512-PeDVbx5PlIRrVvdxiuSxPfBo7sK5qrL3LbvvRoGVNiHYRAkBm/48lKqoioxcmp0bgsyJs9lMw7CdtGFvnMJbVg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -12458,8 +12463,8 @@ packages:
       shallowequal: 1.1.0
     dev: false
 
-  /react-hook-form@7.45.0(react@18.2.0):
-    resolution: {integrity: sha512-AbHeZ4ad+0dEIknSW9dBgIwcvRDfZ1O97sgj75WaMdOX0eg8TBiUf9wxzVkIjZbk76BBIE9lmFOzyD4PN80ZQg==}
+  /react-hook-form@7.45.2(react@18.2.0):
+    resolution: {integrity: sha512-9s45OdTaKN+4NSTbXVqeDITd/nwIg++nxJGL8+OD5uf1DxvhsXQ641kaYHk5K28cpIOTYm71O/fYk7rFaygb3A==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -12712,7 +12717,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}

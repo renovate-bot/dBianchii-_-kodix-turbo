@@ -2,7 +2,7 @@
 
 import type { ComponentProps } from "react";
 
-import { cn } from "./lib/utils";
+import { cn } from "../lib/utils";
 
 export function H1({ children, className }: ComponentProps<"h1">) {
   return (

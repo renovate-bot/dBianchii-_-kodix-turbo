@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import "~/styles/globals.css";
+import "@kdx/ui/styles/globals.css";
 
 import type { AppType } from "next/app";
 
@@ -49,8 +49,9 @@ export default function Layout(props: { children: React.ReactNode }) {
           <NextAuthProvider>
             <NextThemeProvider>
               <Header />
+              {/* {isLayoutNotNeeded && <Header />} */}
               {props.children}
-              <Footer />
+              {/* {isLayoutNotNeeded && <Footer />} */}
               <Toaster />
             </NextThemeProvider>
           </NextAuthProvider>
