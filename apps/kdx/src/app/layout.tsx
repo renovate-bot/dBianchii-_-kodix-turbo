@@ -50,7 +50,8 @@ export default function Layout(props: { children: React.ReactNode }) {
             <NextThemeProvider>
               <Header />
               {/* {isLayoutNotNeeded && <Header />} */}
-              {props.children}
+							<div className="p-8">{props.children}</div>
+              
               {/* {isLayoutNotNeeded && <Footer />} */}
               <Footer />
               <Toaster />

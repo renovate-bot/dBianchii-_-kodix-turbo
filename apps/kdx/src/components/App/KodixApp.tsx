@@ -135,7 +135,7 @@ const KodixApp: React.FC<Props> = ({
               </Link>
             ) : installed ? (
               <Link
-                href={`app${appUrl}`}
+                href={`apps${appUrl}`}
                 className={buttonVariants({ variant: "default" })}
               >
                 Open
