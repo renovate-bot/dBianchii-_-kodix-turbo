@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 
 import "@kdx/ui/styles/globals.css";
+import "~/styles/globals.css";
 
-import type { AppType } from "next/app";
+import { Inter as FontSans } from "next/font/google";
 
-import { Toaster } from "@kdx/ui";
+import { cn, Toaster } from "@kdx/ui";
 
 import Footer from "~/components/Footer/footer";
 import Header from "~/components/Header/Header";
@@ -15,26 +15,21 @@ import {
   NextAuthProvider,
   NextThemeProvider,
   TRPCReactProvider,
-} from "./providers";
+} from "../components/providers";
 
-const fontSans = Inter({
+const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
-  title: "Create T3 Turbo",
-  description: "Simple monorepo with shared backend for web & mobile apps",
+  title: "Kodix",
+  description: "Software on demand",
   openGraph: {
-    title: "Create T3 Turbo",
-    description: "Simple monorepo with shared backend for web & mobile apps",
-    url: "https://create-t3-turbo.vercel.app",
-    siteName: "Create T3 Turbo",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@jullerino",
-    creator: "@jullerino",
+    title: "Kodix",
+    description: "Software on demand",
+    url: "https://kodix.com.br",
+    siteName: "Kodix",
   },
 };
 
@@ -44,7 +39,12 @@ export default function Layout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body className={["font-sans", fontSans.variable].join(" ")}>
+      <body
+        className={cn(
+          "bg-background min-h-screen font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
         <TRPCReactProvider>
           <NextAuthProvider>
             <NextThemeProvider>
@@ -52,6 +52,7 @@ export default function Layout(props: { children: React.ReactNode }) {
               {/* {isLayoutNotNeeded && <Header />} */}
               {props.children}
               {/* {isLayoutNotNeeded && <Footer />} */}
+              <Footer />
               <Toaster />
             </NextThemeProvider>
           </NextAuthProvider>
