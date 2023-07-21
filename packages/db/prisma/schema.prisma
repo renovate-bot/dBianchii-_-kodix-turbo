@@ -15,7 +15,7 @@ datasource db {
   relationMode = "prisma"
 }
 
-model App_Roles {
+model AppRoles {
   id              String  @id @default(cuid())
   appId           String
   roleName        String
@@ -26,6 +26,7 @@ model App_Roles {
   app App @relation(fields: [appId], references: [id])
 
   @@index([appId])
+  @@map("App_Roles")
 }
 
 model AppWorkspaceConfig {
@@ -71,7 +72,7 @@ model App {
   urlApp              String               @unique
   appWorkspaceConfigs AppWorkspaceConfig[] @relation("AppConfig")
 
-  appRoles App_Roles[]
+  appRoles AppRoles[]
 
   @@index([devPartnerId])
 }
@@ -244,8 +245,8 @@ model User {
   sessions          Session[]
   workspaces        Workspace[] @relation("UserWorkspace")
   Todo              Todo[]
-  activeWorkspaceId String?     @map("activeWorkspaceId")
-  activeWorkspace   Workspace?  @relation("UserActiveWorkspace", fields: [activeWorkspaceId], references: [id])
+  activeWorkspaceId String      @map("activeWorkspaceId")
+  activeWorkspace   Workspace   @relation("UserActiveWorkspace", fields: [activeWorkspaceId], references: [id])
   EventDone         EventDone[]
 
   @@index([activeWorkspaceId])
