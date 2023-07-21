@@ -1,34 +1,16 @@
 "use client";
 
-import "@/pages/app/todo";
-
 import { useEffect, useState } from "react";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
 import type { Status } from "@prisma/client";
 import type { RowData } from "@tanstack/react-table";
 import { createColumnHelper } from "@tanstack/react-table";
 import type { inferRouterOutputs } from "@trpc/server";
-import { format } from "date-fns";
-import { Calendar as CalendarIcon, X } from "lucide-react";
-import { ZodNullable } from "zod";
 
 import type { AppRouter } from "@kdx/api";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  Button,
-  Checkbox,
-  PopoverTrigger,
-  toast,
-  useToast,
-} from "@kdx/ui";
+import { Button, Checkbox, toast, useToast } from "@kdx/ui";
 
 import { api } from "~/utils/api";
-import {
-  DatePickerIcon,
-  DatePickerWithPresets,
-} from "~/components/DatePickerWithPresets";
+import { DatePickerWithPresets } from "~/components/DatePickerWithPresets";
 import { AssigneePopover } from "./AssigneePopover";
 import {
   PriorityIcon,

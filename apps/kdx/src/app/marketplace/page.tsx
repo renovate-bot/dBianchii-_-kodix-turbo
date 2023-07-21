@@ -4,8 +4,8 @@ import { useSession } from "next-auth/react";
 
 import { H1, Lead, Separator } from "@kdx/ui";
 
+import KodixApp from "~/components/App/KodixApp";
 import { api } from "../../utils/api";
-import KodixApp from "../components/App/KodixApp";
 
 export default function Marketplace() {
   const { data: session } = useSession();
