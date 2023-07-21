@@ -8,12 +8,11 @@ import {
   ArrowLeftOnRectangleIcon,
   Bars3Icon,
 } from "@heroicons/react/24/outline";
-import classNames from "classnames";
 import type { Session } from "next-auth";
 import { signOut, useSession } from "next-auth/react";
 import { api } from "src/utils/api";
 
-import { Button, buttonVariants } from "@kdx/ui";
+import { Button, buttonVariants, cn } from "@kdx/ui";
 
 const callsToActionProfilePic = [
   //{ name: 'Settings', href: '#', icon: Cog6ToothIcon },
@@ -89,7 +88,7 @@ function LoginOrUserProfile({ session }: LoginOrUserProfileProps) {
             {({ open }) => (
               <>
                 <Popover.Button
-                  className={classNames(
+                  className={cn(
                     open ? "text-gray-900" : "text-gray-500",
                     "group inline-flex items-center rounded-md bg-gray-800 text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2",
                   )}
@@ -126,7 +125,7 @@ function LoginOrUserProfile({ session }: LoginOrUserProfileProps) {
                             }
                           >
                             <p
-                              className={classNames({
+                              className={cn({
                                 "text-white":
                                   session.user.activeWorkspaceId ===
                                   workspace.id,

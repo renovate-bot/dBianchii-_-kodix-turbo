@@ -276,7 +276,7 @@ export const eventRouter = createTRPCRouter({
           eventExceptionId: true,
         })
         .refine(
-          (data) => data.eventExceptionId || data.eventMasterId,
+          (data) => data.eventExceptionId ?? data.eventMasterId,
           "Either eventMasterId or eventExceptionId must be provided",
         )
         .refine((data) => {
@@ -424,7 +424,7 @@ export const eventRouter = createTRPCRouter({
           description: z.string().optional(),
         })
         .refine(
-          (data) => data.eventExceptionId || data.eventMasterId,
+          (data) => data.eventExceptionId ?? data.eventMasterId,
           "Either eventMasterId or eventExceptionId must be provided",
         )
         .refine((data) => {
@@ -483,7 +483,7 @@ export const eventRouter = createTRPCRouter({
             data: {
               newDate: input.from,
               EventInfo:
-                input.description || input.title //* Se o usuário não mandou nem title nem description, não fazemos nada com o EventInfo.
+                input.description ?? input.title //* Se o usuário não mandou nem title nem description, não fazemos nada com o EventInfo.
                   ? {
                       upsert: {
                         //* Upsert é um update ou um create. Se não existir, cria. Se existir, atualiza.
@@ -525,7 +525,7 @@ export const eventRouter = createTRPCRouter({
 
         //* Temos uma ocorrência. Isso significa que o usuário quer editar a ocorrência que veio do master.
         //* Para fazer isso, temos que criar uma NOVA EXCEÇÃO.
-        if (input.title || input.description) {
+        if (input.title ?? input.description) {
           //* Se tivermos title ou description, criamos um eventInfo e também uma exceção.
           return await ctx.prisma.eventInfo.create({
             data: {
@@ -539,7 +539,7 @@ export const eventRouter = createTRPCRouter({
                     },
                   },
                   originalDate: foundTimestamp,
-                  newDate: input.from || foundTimestamp,
+                  newDate: input.from ?? foundTimestamp,
                 },
               },
             },
@@ -551,7 +551,7 @@ export const eventRouter = createTRPCRouter({
             data: {
               eventMasterId: eventMaster.id,
               originalDate: foundTimestamp,
-              newDate: input.from || foundTimestamp,
+              newDate: input.from ?? foundTimestamp,
             },
           }); //! END OF PROCEDURE
 
@@ -599,7 +599,7 @@ export const eventRouter = createTRPCRouter({
         //* Havemos um selectedTimestamp.
         //* Temos que procurar se temos uma exceção que bate com o selectedTimestamp.
         //* Se tivermos, temos que alterá-la.
-      } else if (input.editDefinition === "all") {
-      }
+      } /*else if (input.editDefinition === "all") {
+      }*/
     }),
 });

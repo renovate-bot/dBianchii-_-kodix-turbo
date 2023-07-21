@@ -6,7 +6,6 @@ import type { Status } from "@prisma/client";
 import { format } from "date-fns";
 import { Plus, X } from "lucide-react";
 
-import { appRouter } from "@kdx/api";
 import {
   Avatar,
   AvatarFallback,
