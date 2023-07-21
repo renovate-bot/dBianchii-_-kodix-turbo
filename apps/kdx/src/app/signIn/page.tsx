@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { redirect } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 
-import { providers } from "@kdx/auth";
 import {
   Button,
   Card,
@@ -20,8 +19,7 @@ import {
 
 function SignIn() {
   const { data: session } = useSession();
-  const router = useRouter();
-  if (session) void router.push("/");
+  if (session) redirect("/");
 
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -41,7 +39,7 @@ function SignIn() {
           <CardContent>
             <div className="grid w-full items-center">
               <div className="flex flex-col">
-                {providers.includes("email") && (
+                {"email" && (
                   <>
                     <Label
                       htmlFor="email"
@@ -80,7 +78,7 @@ function SignIn() {
                   </div>
                 </div>
 
-                {providers?.includes("google") && (
+                {"google" && (
                   <>
                     <Button
                       variant="outline"
