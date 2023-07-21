@@ -18,13 +18,12 @@ declare module "next-auth" {
   interface Session {
     user: {
       id: string;
-			// ...other properties
+      // ...other properties
       // role: UserRole;
       activeWorkspaceId: string; // Might need fix
       activeWorkspaceName: string;
     } & DefaultSession["user"];
   }
-
 }
 
 export const {
@@ -39,22 +38,22 @@ export const {
       clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
     EmailProvider({
-			server: {
-				host: env.EMAIL_SERVER_HOST,
-				port: env.EMAIL_SERVER_PORT,
-				auth: {
-					user: env.EMAIL_SERVER_USER,
-					pass: env.EMAIL_SERVER_PASSWORD,
-				},
-			},
-			from: env.EMAIL_FROM,
-			type: "email",
-			sendVerificationRequest: () => {
-				throw new Error("Not implemented");
-			},
-			id: "",
-			name: ""
-		}),
+      server: {
+        host: env.EMAIL_SERVER_HOST,
+        port: env.EMAIL_SERVER_PORT,
+        auth: {
+          user: env.EMAIL_SERVER_USER,
+          pass: env.EMAIL_SERVER_PASSWORD,
+        },
+      },
+      from: env.EMAIL_FROM,
+      type: "email",
+      sendVerificationRequest: () => {
+        throw new Error("Not implemented");
+      },
+      id: "",
+      name: "",
+    }),
   ],
   callbacks: {
     async session({ session, user }) {
@@ -86,9 +85,11 @@ export const {
     //   return !!auth?.user
     // }
   },
-	events: {
+  events: {
     createUser: async (message) => {
-      const firstName = message.user.name ? message.user.name.split("")[0] : "";
+      const firstName = message.user.name
+        ? message.user.name.split(" ")[0]
+        : "";
       //Create a personal workspace for the user on signup, set it as their active workspace
       const workspace = await prisma.workspace.create({
         data: {
@@ -109,7 +110,7 @@ export const {
       });
     },
   },
-	secret: env.NEXTAUTH_SECRET,
+  secret: env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/auth/signIn",
     //signOut: '/auth/signout',

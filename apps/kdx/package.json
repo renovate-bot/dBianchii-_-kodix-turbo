@@ -34,6 +34,7 @@
     "react": "18.2.0",
     "react-aria": "^3.26.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
     "react-stately": "^3.24.0",
     "superjson": "1.9.1",
     "tailwindcss-animate": "^1.0.6",
