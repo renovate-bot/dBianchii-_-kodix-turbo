@@ -1,17 +1,16 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { cva } from "class-variance-authority";
 import { CreditCard, LogOut, PlusCircle, Settings, User } from "lucide-react";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
+import { auth } from "@kdx/auth";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
   Button,
-  buttonVariants,
   cn,
   DialogTrigger,
   DropdownMenu,
@@ -24,10 +23,42 @@ import {
   DropdownMenuTrigger,
 } from "@kdx/ui";
 
-import TeamSwitcher, { AddWorkspaceDialog } from "./teamSwitcher";
+import { AddWorkspaceDialog } from "./AddWorkspaceDialog";
+import TeamSwitcher from "./teamSwitcher";
+import UserProfileButton from "./UserProfileButton";
 
-export default function Header() {
-  const { data: session } = useSession();
+const buttonVariants = cva(
+  "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        xs: "h-6 rounded-md px-2 py-1",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
+);
+
+export default async function Header() {
+  const session = await auth();
 
   return (
     <header className="border-b">
@@ -51,9 +82,12 @@ export default function Header() {
   );
 }
 
-function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
-  const { data: session } = useSession();
-  const pathname = usePathname();
+async function MainNav({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) {
+  const session = await auth();
+  const pathname = "usePathname();";
   const navigation = [
     {
       href: "/marketplace",
@@ -89,86 +123,12 @@ function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   );
 }
 
-export function UserNav() {
-  const { data: session } = useSession();
-  const [showNewWorkspaceDialog, setShowNewWorkspaceDialog] =
-    React.useState(false);
+export async function UserNav() {
+  const session = await auth();
+
   return (
     <>
-      {session?.user.id && (
-        <AddWorkspaceDialog
-          open={showNewWorkspaceDialog}
-          onOpenChange={setShowNewWorkspaceDialog}
-        >
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage
-                    src={session.user.image ?? ""}
-                    alt="Avatar image"
-                  />
-                  <AvatarFallback>
-                    {session.user.name
-                      ? session?.user?.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")
-                      : ""}
-                  </AvatarFallback>
-                </Avatar>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">
-                    {session.user.name}
-                  </p>
-                  <p className="text-muted-foreground text-xs leading-none">
-                    {session.user.email}
-                  </p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem disabled>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Profile</span>
-                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem disabled>
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  <span>Billing</span>
-                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                </DropdownMenuItem>
-                <DropdownMenuItem disabled>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
-                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                </DropdownMenuItem>
-
-                <DialogTrigger asChild>
-                  <DropdownMenuItem
-                    onSelect={() => {
-                      setShowNewWorkspaceDialog(true);
-                    }}
-                  >
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    <span>New Workspace</span>
-                  </DropdownMenuItem>
-                </DialogTrigger>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => void signOut()}>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
-                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </AddWorkspaceDialog>
-      )}
+      {session?.user.id && <UserProfileButton />}
       {!session?.user.id && (
         <div className="mr-5 space-x-2">
           <Link href="/signIn" className={buttonVariants({ variant: "ghost" })}>

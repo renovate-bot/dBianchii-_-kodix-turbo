@@ -1,16 +1,20 @@
-"use client";
+import { auth } from "@kdx/auth";
+import { prisma } from "@kdx/db";
+import { H1, Lead } from "@kdx/ui";
 
-import { useEffect } from "react";
-
-import { H1, H4, Lead } from "@kdx/ui";
-
-import { api } from "~/utils/api";
 import KodixApp from "~/components/App/KodixApp";
 
-export default function Apps() {
-  const { data: apps } = api.app.getInstalled.useQuery();
-
-  useEffect(() => void {}, [apps]);
+export default async function Apps() {
+  const session = await auth();
+  const apps = await prisma.app.findMany({
+    include: {
+      activeWorkspaces: {
+        where: {
+          id: session.user.activeWorkspaceId,
+        },
+      },
+    },
+  });
 
   return (
     <div className="p-4">
