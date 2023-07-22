@@ -9,7 +9,7 @@ export default async function Home() {
   const session = await auth();
 
   let initialData: RouterOutputs["workspace"]["getActiveWorkspace"] | undefined;
-  if (session.user !== null) {
+  if (session !== null) {
     const caller = appRouter.workspace.createCaller({ session, prisma });
     initialData = await caller.getActiveWorkspace();
   }
