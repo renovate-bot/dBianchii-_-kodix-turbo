@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 
-import type { Session } from "@kdx/auth";
 import {
   Avatar,
   AvatarFallback,
@@ -16,7 +15,7 @@ import type { RouterOutputs } from "~/utils/api";
 import { api } from "~/utils/api";
 
 export default function HomePage(props: {
-  initialData: RouterOutputs["workspace"]["getActiveWorkspace"];
+  initialData: RouterOutputs["workspace"]["getActiveWorkspace"] | undefined;
 }) {
   const sessionData = useSession();
 

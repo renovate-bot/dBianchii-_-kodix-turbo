@@ -1,24 +1,18 @@
-import Link from "next/link";
-import { signOut } from "next-auth/react";
-
+import type { RouterOutputs } from "@kdx/api";
 import { appRouter } from "@kdx/api";
 import { auth } from "@kdx/auth";
 import { prisma } from "@kdx/db";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  buttonVariants,
-  Skeleton,
-} from "@kdx/ui";
 
-import { api } from "~/utils/api";
 import HomePage from "./Home";
 
 export default async function Home() {
   const session = await auth();
-  const caller = appRouter.workspace.createCaller({ session, prisma });
-  const initialData = await caller.getActiveWorkspace();
+
+  let initialData: RouterOutputs["workspace"]["getActiveWorkspace"] | undefined;
+  if (session.user !== null) {
+    const caller = appRouter.workspace.createCaller({ session, prisma });
+    initialData = await caller.getActiveWorkspace();
+  }
 
   return <HomePage initialData={initialData} />;
 }
