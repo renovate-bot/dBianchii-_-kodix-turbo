@@ -1,5 +1,8 @@
 import React, { Suspense } from "react";
 
+import { appRouter } from "@kdx/api";
+import { auth } from "@kdx/auth";
+import { prisma } from "@kdx/db";
 import { Skeleton } from "@kdx/ui";
 
 import { DialogProvider } from "./Contexts/DialogContexts";
@@ -26,6 +29,7 @@ export default function Testing() {
         >
           <GithubUser username="dbianchii" />;
         </Suspense>
+        {/* <button onClick={() => alert("hi")}></button> */}
       </div>
     </DialogProvider>
   );

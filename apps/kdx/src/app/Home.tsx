@@ -35,7 +35,7 @@ export default function HomePage(props: {
       </h1>
       {sessionData.data && (
         <div className=" text-2xl">
-          <p>Your current active workspace is:</p>
+          <p>Workspace:</p>
           <div className="text-bold text-primary inline-flex h-[40px] items-center">
             <Avatar className="my-auto mr-2 h-5 w-5">
               <AvatarImage

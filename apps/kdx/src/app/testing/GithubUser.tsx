@@ -1,5 +1,3 @@
-import React from "react";
-
 import Dialog from "./Dialog";
 
 export async function GithubUser({ username }: { username: string }) {
