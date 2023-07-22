@@ -1,29 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { cva } from "class-variance-authority";
-import { CreditCard, LogOut, PlusCircle, Settings, User } from "lucide-react";
-import { signOut } from "next-auth/react";
 
 import { auth } from "@kdx/auth";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  Button,
-  cn,
-  DialogTrigger,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@kdx/ui";
+import { cn } from "@kdx/ui";
 
-import { AddWorkspaceDialog } from "./AddWorkspaceDialog";
 import TeamSwitcher from "./teamSwitcher";
 import UserProfileButton from "./UserProfileButton";
 
