@@ -2,25 +2,12 @@ import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
 import { appRouter, createTRPCContext } from "@kdx/api";
 
+import { CorsOptions, setCorsHeaders } from "../../_enableCors";
+
 export const runtime = "nodejs";
 
-function setCorsHeaders(req: Request, res: Response) {
-  res.headers.set("Access-Control-Allow-Origin", "*");
-  res.headers.set("Access-Control-Request-Method", "*");
-  res.headers.set("Access-Control-Allow-Methods", "OPTIONS, GET, POST");
-  res.headers.set(
-    "Access-Control-Allow-Headers",
-    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-  );
-}
-
-export function OPTIONS(req: Request) {
-  const response = new Response(null, {
-    status: 204,
-  });
-  setCorsHeaders(req, response);
-
-  return response;
+export function OPTIONS() {
+  return CorsOptions();
 }
 
 async function handler(req: Request) {
@@ -30,7 +17,7 @@ async function handler(req: Request) {
     req,
     createContext: () => createTRPCContext(),
   });
-  setCorsHeaders(req, response);
+  setCorsHeaders(response);
   return response;
 }
 

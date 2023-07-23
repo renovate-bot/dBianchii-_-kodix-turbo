@@ -1,11 +1,15 @@
+import { api } from "~/utils/api";
 import { helpers } from "~/utils/proxy";
-import Client from "./Client";
 
-export default async function HomePage() {
-  await helpers.test.test.prefetch({ source: "server" });
+async function getData() {
+  return await helpers.app.getAll.fetch();
+}
+
+export default async function Page() {
+  const data = await getData();
   return (
-    <main className="flex h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <Client />
-    </main>
+    <div>
+      <h1>{JSON.stringify(data)}</h1>
+    </div>
   );
 }

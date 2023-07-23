@@ -7,7 +7,7 @@ export const env = createEnv({
    * built with invalid env vars.
    */
   server: {
-    DATABASE_URL: z.string().url(),
+    //DATABASE_URL: z.string().url(),
     STAYS_OPENAI_API_KEY: z.string(),
   },
   /**
@@ -21,9 +21,9 @@ export const env = createEnv({
    * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
    */
   runtimeEnv: {
-    DATABASE_URL: process.env.DATABASE_URL,
-    STAYS_OPENAI_API_KEY: process.env.STAYS_OPENAI_API_KEY,
+    //DATABASE_URL: process.env.DATABASE_URL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    STAYS_OPENAI_API_KEY: process.env.STAYS_OPENAI_API_KEY,
   },
   skipValidation: !!process.env.CI || !!process.env.SKIP_ENV_VALIDATION,
 });
