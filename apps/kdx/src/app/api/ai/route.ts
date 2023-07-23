@@ -2,7 +2,7 @@ import { OpenAIStream, StreamingTextResponse } from "ai";
 import { Configuration, OpenAIApi } from "openai-edge";
 
 import { env } from "~/env.mjs";
-import { CorsOptions, setCorsHeaders } from "../_enableCors";
+import { CorsOptions } from "../_enableCors";
 
 export const runtime = "edge";
 
@@ -21,7 +21,6 @@ export async function POST(req: Request) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     messages,
   });
-  setCorsHeaders(response);
   const stream = OpenAIStream(response);
   return new StreamingTextResponse(stream);
 }
