@@ -22,7 +22,7 @@ export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     api: `${
       process.env.NODE_ENV === "production"
-        ? "www.kodix.com.br"
+        ? "https://www.kodix.com.br"
         : "http://localhost:3000"
     }/api/ai`,
   });
