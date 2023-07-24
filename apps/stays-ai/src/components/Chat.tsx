@@ -34,7 +34,7 @@ export default function Chat() {
   const messageExamples = [
     "Faça a descrição de um apartamento de dois quartos em Ipanema para o Airbnb",
     "Como chamar mais atenção para meu anúncio?",
-    "Como posso melhorar a divulgação do meu anúncio?",
+    "Como posso melhorar a divulgação do meu anúncio",
   ];
 
   return (
@@ -51,10 +51,10 @@ export default function Chat() {
       </CardHeader>
       <CardContent className="p-0">
         <div className="grid w-full items-center gap-4">
-          <ScrollArea className="h-[600px]">
+          <ScrollArea className="h-[605px]">
             <div className="">
               {messages.length === 0 && (
-                <div className="mx-8 mt-6 grid grid-cols-3 gap-4">
+                <div className="mx-8 mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
                   {messageExamples.map((message, i) => (
                     <Button
                       key={i}
@@ -104,12 +104,9 @@ export default function Chat() {
         >
           <Textarea
             placeholder="Gere um título..."
-            onChange={(e) => {
-              handleInputChange(e);
-              setInput("");
-            }}
+            onChange={handleInputChange}
             value={input}
-          />
+          ></Textarea>
           <Button variant="default" type="submit">
             Enviar
           </Button>

@@ -6,6 +6,7 @@ import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@kdx/ui";
 
+import { TailwindIndicator } from "~/components/TailwindIndicator";
 import { TRPCReactProvider } from "./providers";
 
 const fontSans = FontSans({
@@ -35,7 +36,12 @@ export default function Layout(props: { children: React.ReactNode }) {
       <body
         className={cn("bg-background font-sans antialiased", fontSans.variable)}
       >
-        <TRPCReactProvider>{props.children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          {props.children}
+          <div className="fixed bottom-1 right-1 z-50 flex flex-row items-center space-x-1">
+            <TailwindIndicator />
+          </div>
+        </TRPCReactProvider>
       </body>
     </html>
   );
