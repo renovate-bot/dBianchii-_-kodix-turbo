@@ -33,8 +33,8 @@ export default function Chat() {
 
   const messageExamples = [
     "Faça a descrição de um apartamento de dois quartos em Ipanema para o Airbnb",
-    "Faça a descrição de um apartamento de dois quartos em Ipanema para o Airbnb",
-    "Faça a descrição de um apartamento de dois quartos em Ipanema para o Airbnb",
+    "Como chamar mais atenção para meu anúncio?",
+    "Como posso melhorar a divulgação do meu anúncio?",
   ];
 
   return (
@@ -58,16 +58,15 @@ export default function Chat() {
                   {messageExamples.map((message, i) => (
                     <Button
                       key={i}
-                      className="text-foreground hover:text-background hover:bg-foreground/50 h-40"
-                      onClick={() => setInput(message)}
+                      className="h-32"
+                      onClick={() => {
+                        setInput(message);
+                      }}
+                      variant={"outline"}
                     >
-                      <Card className="bg-muted flex flex-col items-center space-y-1.5">
-                        <CardContent className="flex justify-center align-middle">
-                          <p className="text-center text-sm">
-                            &quot;{message}&quot;
-                          </p>
-                        </CardContent>
-                      </Card>
+                      <p className="text-center text-sm italic">
+                        &quot;{message}&quot;
+                      </p>
                     </Button>
                   ))}
                 </div>
@@ -105,9 +104,13 @@ export default function Chat() {
         >
           <Textarea
             placeholder="Gere um título..."
-            onChange={handleInputChange}
+            onChange={(e) => {
+              handleInputChange(e);
+              setInput("");
+            }}
+            value={input}
           />
-          <Button variant="default" type="submit" value={input}>
+          <Button variant="default" type="submit">
             Enviar
           </Button>
         </form>
