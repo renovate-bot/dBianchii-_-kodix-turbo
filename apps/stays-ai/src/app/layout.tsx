@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 import "~/styles/globals.css";
 
@@ -38,6 +39,7 @@ export default function Layout(props: { children: React.ReactNode }) {
       >
         <TRPCReactProvider>
           {props.children}
+          <Analytics />
           <div className="fixed bottom-1 right-1 z-50 flex flex-row items-center space-x-1">
             <TailwindIndicator />
           </div>
