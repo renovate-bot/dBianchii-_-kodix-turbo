@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useChat } from "ai/react";
+import { User } from "lucide-react";
 
 import {
   Avatar,
-  AvatarImage,
   Button,
   Card,
   CardContent,
@@ -14,82 +15,61 @@ import {
   CardHeader,
   CardTitle,
   cn,
-  Input,
   ScrollArea,
+  Textarea,
 } from "@kdx/ui";
 
-export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: `${
-      process.env.NODE_ENV === "production"
-        ? "https://www.kodix.com.br"
-        : "http://localhost:3000"
-    }/api/ai`,
-  });
+import { StaysIcon, StaysLogo } from "./SVGs/index";
 
-  //const messages = [
-  //  {
-  //    id: Math.random(),
-  //    role: "user",
-  //    content:
-  //      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, repudiandae?",
-  //  },
-  //  {
-  //    id: Math.random(),
-  //    role: "assistant",
-  //    content:
-  //      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, repudiandae?",
-  //  },
-  //  {
-  //    id: Math.random(),
-  //    role: "user",
-  //    content:
-  //      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, repudiandae?",
-  //  },
-  //  {
-  //    id: Math.random(),
-  //    role: "assistant",
-  //    content:
-  //      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, repudiandae?",
-  //  },
-  //];
+export default function Chat() {
+  const { messages, input, handleInputChange, handleSubmit, setInput } =
+    useChat({
+      api: `${
+        process.env.NODE_ENV === "production"
+          ? "https://www.kodix.com.br"
+          : "http://localhost:3000"
+      }/api/ai`,
+    });
+
+  const messageExamples = [
+    "Faça a descrição de um apartamento de dois quartos em Ipanema para o Airbnb",
+    "Faça a descrição de um apartamento de dois quartos em Ipanema para o Airbnb",
+    "Faça a descrição de um apartamento de dois quartos em Ipanema para o Airbnb",
+  ];
 
   return (
     <Card className="w-[800px]">
-      <CardHeader className="text-center">
-        <CardTitle>Gerador de títulos Stays</CardTitle>
-        <CardDescription>Crie seus títulos aqui!</CardDescription>
+      <CardHeader className="shadow">
+        <CardTitle>
+          <Link target="_blank" href="https://www.stays.net">
+            <StaysLogo className="h-10 w-40" />
+          </Link>
+        </CardTitle>
+        <CardDescription className="text-md">
+          Assistente para aluguéis de temporada
+        </CardDescription>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="grid w-full items-center gap-4 space-y-4">
+        <div className="grid w-full items-center gap-4">
           <ScrollArea className="h-[600px]">
-            <div className="mt-10">
+            <div className="">
               {messages.length === 0 && (
-                <div className="mx-8 grid grid-cols-3 gap-4">
-                  <Card className="bg-muted flex flex-col items-center space-y-1.5">
-                    <CardContent className="flex justify-center align-middle">
-                      <p className="text-center">
-                        &quot;Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Molestias, repudiandae?&quot;
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card className="bg-muted flex flex-col items-center space-y-1.5">
-                    <CardContent className="flex justify-center align-middle">
-                      <p className="text-center">
-                        &quot;Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Molestias, repudiandae?&quot;
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card className="bg-muted flex flex-col items-center space-y-1.5">
-                    <CardContent className="flex justify-center align-middle">
-                      <p className="text-center">
-                        &quot;Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Molestias, repudiandae?&quot;
-                      </p>
-                    </CardContent>
-                  </Card>
+                <div className="mx-8 mt-6 grid grid-cols-3 gap-4">
+                  {messageExamples.map((message, i) => (
+                    <Button
+                      key={i}
+                      className="text-foreground hover:text-background hover:bg-foreground/50 h-40"
+                      onClick={() => setInput(message)}
+                    >
+                      <Card className="bg-muted flex flex-col items-center space-y-1.5">
+                        <CardContent className="flex justify-center align-middle">
+                          <p className="text-center text-sm">
+                            &quot;{message}&quot;
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </Button>
+                  ))}
                 </div>
               )}
               {messages.map((message) => (
@@ -98,16 +78,14 @@ export default function Chat() {
                   className={cn(message.role === "assistant" && "bg-muted")}
                 >
                   <div className="mx-6 flex flex-row py-4">
-                    <Avatar>
-                      <AvatarImage
-                        src={
-                          message.role == "user"
-                            ? "https://github.com/dbianchii.png"
-                            : "https://github.com/shadcn.png"
-                        }
-                      />
+                    <Avatar className="h-10 w-10">
+                      {message.role === "assistant" ? (
+                        <StaysIcon className="h-auto w-auto p-1" />
+                      ) : (
+                        <User className="h-auto w-auto p-1" />
+                      )}
                     </Avatar>
-                    <p className="text-foreground ml-2 text-sm leading-relaxed">
+                    <p className="ml-4 text-sm leading-relaxed">
                       {message.content}
                     </p>
                   </div>
@@ -117,10 +95,19 @@ export default function Chat() {
           </ScrollArea>
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between space-x-2">
-        <form onSubmit={handleSubmit} className="flex w-full gap-2">
-          <Input placeholder="Gere um título..." onChange={handleInputChange} />
-          <Button type="submit" value={input}>
+      <CardFooter className="mt-4 flex justify-between space-x-2">
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+            setInput("");
+          }}
+          className="flex w-full gap-2"
+        >
+          <Textarea
+            placeholder="Gere um título..."
+            onChange={handleInputChange}
+          />
+          <Button variant="default" type="submit" value={input}>
             Enviar
           </Button>
         </form>

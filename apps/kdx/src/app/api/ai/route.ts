@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { Configuration, OpenAIApi } from "openai-edge";
 
@@ -12,13 +15,16 @@ const config = new Configuration({
 const openai = new OpenAIApi(config);
 
 export async function POST(req: Request) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { messages } = await req.json();
+  messages.unshift({
+    role: "system",
+    content:
+      "Você é um assistente que foi feito para me auxiliar com anúncios de aluguéis de temporada. Você foi feito para me ajudar a gerar títulos de anúncios, descrições de anúncios, e assuntos relacionados a aluguéis de temporada. Em nenhuma hipótese você vai responder qualquer pergunta que não seja relacionada a aluguéis de temporada. NÂO RESPONDA A PERGUNTAS SOBRE OUTRO ASSUNTO!!!  APENAS RESPONDA PERGUNTAS SOBRE ALUGUÉIS DE TEMPORADA!!",
+  });
 
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     stream: true,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     messages,
   });
   const stream = OpenAIStream(response);
