@@ -10,5 +10,11 @@
   ],
   "tailwindCSS.experimental.configFile": "./packages/config/tailwind/index.ts",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  /*
+   * Note - add the following JSON to your User keybindings.json:
+   * { "key": "f5", "command": "workbench.action.debug.selectandstart", "when": "config.workspaceKeybindings.selectAndStartDebugging.enabled && debuggersAvailable && debugState == 'inactive'" }
+   * This will allow you to select the project to debug when you press F5, and only on this workspace.
+   */
+  "workspaceKeybindings.selectAndStartDebugging.enabled": true
 }

@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "~/styles/globals.css";
 
 import { Inter as FontSans } from "next/font/google";
+import Script from "next/script";
 
 import { cn } from "@kdx/ui";
 
@@ -18,17 +19,17 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "Stays IA",
   description: "Crie títulos e descrições para seus anúncios de imóveis!",
-  openGraph: {
-    title: "Stays IA",
-    description: "Crie títulos e descrições para seus anúncios de imóveis!",
-    url: "",
-    siteName: "Stays IA",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "Stays IA",
-    creator: "@Kodix",
-  },
+  // openGraph: {
+  //   title: "Stays IA",
+  //   description: "Crie títulos e descrições para seus anúncios de imóveis!",
+  //   url: "",
+  //   siteName: "Stays IA",
+  // },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   site: "Stays IA",
+  //   creator: "@Kodix",
+  // },
 };
 
 export default function Layout(props: { children: React.ReactNode }) {
@@ -37,6 +38,10 @@ export default function Layout(props: { children: React.ReactNode }) {
       <body
         className={cn("bg-background font-sans antialiased", fontSans.variable)}
       >
+        <Script
+          type="text/javascript"
+          src="https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"
+        ></Script>
         <TRPCReactProvider>
           {props.children}
           <Analytics />

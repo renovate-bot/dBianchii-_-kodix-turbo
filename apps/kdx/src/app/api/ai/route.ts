@@ -15,6 +15,8 @@ const config = new Configuration({
 const openai = new OpenAIApi(config);
 
 export async function POST(req: Request) {
+  //rate limit based on ip
+
   const { messages } = await req.json();
   messages.unshift({
     role: "system",
