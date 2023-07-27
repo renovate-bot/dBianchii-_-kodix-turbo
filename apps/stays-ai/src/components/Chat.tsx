@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Script from "next/script";
 import { useChat } from "ai/react";
 import { User } from "lucide-react";
 
@@ -19,10 +18,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
-  DialogTitle,
-  Input,
   ScrollArea,
   Textarea,
 } from "@kdx/ui";
@@ -71,7 +67,7 @@ function Form({
     }
 
     function isElementLoaded() {
-      const element = document.getElementById("rd-button-lkiw80pf");
+      const element = document.getElementById("rd-button-lkigu0y4");
       return !!element;
     }
     const intervalId = setInterval(function () {
@@ -110,13 +106,9 @@ export default function Chat() {
       setOpen(true);
       return;
     }
-    alert("Submit");
-    //handleSubmit(e);
+    //alert("Submit");
+    handleSubmit(e);
     setInput("");
-  }
-
-  function handleSubmitLead() {
-    setOpen(false);
   }
 
   return (
@@ -184,7 +176,12 @@ export default function Chat() {
               onChange={handleInputChange}
               value={input}
             ></Textarea>
-            <Button variant="default" type="submit" ref={submitButtonRef}>
+            <Button
+              variant="default"
+              type="submit"
+              ref={submitButtonRef}
+              disabled={input == ""}
+            >
               Enviar
             </Button>
           </form>
