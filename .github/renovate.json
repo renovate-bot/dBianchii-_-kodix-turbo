@@ -4,7 +4,7 @@
   "packageRules": [
     {
       "matchPackagePatterns": ["^@kdx/"],
-      "enabled": false
+      "enabled": true
     }
   ],
   "updateInternalDeps": true,
