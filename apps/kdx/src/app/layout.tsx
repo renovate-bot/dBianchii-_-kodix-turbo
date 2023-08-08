@@ -24,12 +24,12 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "Kodix",
   description: "Software on demand",
-  openGraph: {
-    title: "Kodix",
-    description: "Software on demand",
-    url: "https://kodix.com.br",
-    siteName: "Kodix",
-  },
+  // openGraph: {
+  //   title: "Kodix",
+  //   description: "Software on demand",
+  //   url: "https://kodix.com.br",
+  //   siteName: "Kodix",
+  // },
 };
 
 export default function Layout(props: { children: React.ReactNode }) {
